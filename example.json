@@ -1,0 +1,23 @@
+{
+  "ts":"2021-11-09T01:46:26Z",
+  "username":"derickwillissx",
+  "platform":"web_player windows 10;chrome 95.0.4638.69;desktop",
+  "ms_played":217196,
+  "conn_country":"US",
+  "ip_addr_decrypted":"67.169.153.56",
+  "user_agent_decrypted":"",
+  "master_metadata_track_name":"ツバメ (feat. ミドリーズ)",
+  "master_metadata_album_artist_name":"YOASOBI",
+  "master_metadata_album_album_name":"ツバメ (feat. ミドリーズ)",
+  "spotify_track_uri":"spotify:track:0yzX8MYYJHw7A3PLvgEc7e",
+  "episode_name":null,
+  "episode_show_name":null,
+  "spotify_episode_uri":null,
+  "reason_start":"trackdone",
+  "reason_end":"trackdone",
+  "shuffle":false,
+  "skipped":null,
+  "offline":false,
+  "offline_timestamp":0,
+  "incognito_mode":false
+}
