@@ -1,7 +1,3 @@
-console.log("\nbeginingeingeing"); // create a blank space between the console.log outputs and the command 
-
-
-// functions
 
 function filterByKey(dataset, key, value, doLog) { // filter the data for a specific key-value pair
     if (Object.hasOwn(dataset[0], key)) {
@@ -205,13 +201,3 @@ let data = [
 
 console.log("\ndata reading complete...\n\n");
 
-// do stuff below this line
-
-let result = totalPlaytime(data, "master_metadata_album_artist_name", "Xanthochroid", true);
-console.log(result);
-// do stuff above this line
-
-// footer
-
-// footer(data, true);
-console.log("--------------------------------------------------\n");
