@@ -1,1 +1,15 @@
-.*~
+# Vim backup and swap files
+*~          # backup files ending with ~
+.*.swp      # swap files like .filename.swp
+*.swp       # swap files
+*.swo
+*.swx
+
+# Vim undo and view files
+*.un~
+*.viminfo
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+
