@@ -1,7 +1,7 @@
 # Vim backup and swap files
-*~          # backup files ending with ~
-.*.swp      # swap files like .filename.swp
-*.swp       # swap files
+*~         
+.*.swp     
+*.swp      
 *.swo
 *.swx
 
