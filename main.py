@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # Check what files were collected to see if the filter worked or if the right files were passed in.
     if debug: print(histFiles) 
 
-    # Now, we begin extracting the JSON files into one big list of dictionaries.
+    # Now, we extract the JSON files into one big list of dictionaries.
     data = []
     for file in histFiles:
         with open(file) as json_data:
