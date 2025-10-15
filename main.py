@@ -1,6 +1,8 @@
 import json # Spotify history is exported in JSON
 import os # for working with files provided by the user
 
+import processing # Local file with the important functions
+
 if __name__ == "__main__":
     # Currently the debug toggle is hardcoded. 
     # I will likely keep it that way, or make it a flag that can be set when executing this application through a terminal.
@@ -32,3 +34,12 @@ if __name__ == "__main__":
     for file in histFiles:
         with open(file) as json_data:
             data.extend(json.load(json_data))
+    
+    # Now that the list is complete, we can process it in various ways. 
+    # Eventually the GUI application will show either a bunch of things or you can choose what it will show. 
+    # For now, I could just ask the user for how they want their data processed. 
+    # Either way, I need to write the data processing functions in Python before I can continue further,
+    # which will exist in a separate file.
+
+    # This is a line used for testing functions from processing.py.
+    print(processing.filterByKey(data, "master_metadata_album_artist_name", "YOASOBI"))
