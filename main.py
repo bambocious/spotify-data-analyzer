@@ -42,4 +42,4 @@ if __name__ == "__main__":
     # which will exist in a separate file.
 
     # This is a line used for testing functions from processing.py.
-    print(processing.filterByKey(data, "master_metadata_album_artist_name", "YOASOBI"))
+    print(processing.filterByTitle(data, "Catch the Rainbow"))
