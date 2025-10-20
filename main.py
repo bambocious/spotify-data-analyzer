@@ -49,6 +49,6 @@ if __name__ == "__main__":
     # This is a line used for testing functions from processing.py.
     print(
         processing.filterByKey(
-            data, "master_metadata_track_name", "Catch the Rainbow", False, False
+            data, "master_metadata_track_name", "Catch The Rainbow", True, False
         )
     )
