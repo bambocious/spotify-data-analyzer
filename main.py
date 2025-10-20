@@ -47,8 +47,4 @@ if __name__ == "__main__":
     # which will exist in a separate file.
 
     # This is a line used for testing functions from processing.py.
-    print(
-        processing.filterByKey(
-            data, "master_metadata_track_name", "Catch The Rainbow", True, False
-        )
-    )
+    print(processing.filterByYear(data, 2025))
