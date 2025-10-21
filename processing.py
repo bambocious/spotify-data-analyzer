@@ -1,6 +1,5 @@
 """
-First I need to convert all the old JS functions into Python.
-Only after that is done can I consider adding more.
+All functions used to process data in some way.
 """
 
 import re  # To filter against regex
@@ -48,3 +47,35 @@ def filterByYear(dataset: list, year):
     filteredSet = [s for s in dataset if s["ts"].split("-")[0] == str(year)]
 
     return filteredSet
+
+
+# ... sorted by value of a key. Numerically or alphabetically is automatically handled, direction is provided or default to ascending.
+def sortBykey(dataset: list, key, isDescending):
+    # Check type of values for a key.
+    valueType = findValueType(dataset, key)
+
+    # Then, use the value to decide if we need to lowercase or not. Case-sensitivity of sorting produces undesirable results.
+    if valueType == str:
+        sortedSet = sorted(
+            dataset, key=lambda song: song[key].lower(), reverse=isDescending
+        )
+    else:
+        sortedSet = sorted(dataset, key=lambda song: song[key], reverse=isDescending)
+
+    return sortedSet
+
+
+# Finds the intended type of a value (i.e. will determine that track names should be strings.)
+# The reasoning used here is that some keys will occasionally hold None/null values.
+# So, we cannot always immediately identify the type of values associated with a particular key.
+# Instead, we must keep checking values until we run into one that is NOT a None,
+# and that one is very likely to be the correct type.
+# If I ever run into any other exceptions they will be added here.
+def findValueType(dataset: list, key):
+    for song in dataset:
+        t = type(song[key])
+
+        if t == None:
+            continue
+
+        return t

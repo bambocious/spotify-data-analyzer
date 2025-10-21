@@ -1,3 +1,8 @@
+"""
+Main program to collect the JSON files and create the large list,
+and then run various processes on it.
+"""
+
 import json  # Spotify history is exported in JSON
 import os  # for working with files provided by the user
 
@@ -46,5 +51,38 @@ if __name__ == "__main__":
     # Either way, I need to write the data processing functions in Python before I can continue further,
     # which will exist in a separate file.
 
-    # This is a line used for testing functions from processing.py.
-    print(processing.filterByYear(data, 2025))
+    # Testing below.
+    listA = processing.filterByKey(
+        data, "master_metadata_album_artist_name", "Palaye Royale", False, False
+    )
+    listB = processing.sortBykey(listA, "master_metadata_track_name", False)
+
+    for song in listB:
+        print(song["master_metadata_track_name"])
+"""
+For reference, the different options for keys (in songs) are:
+    ts
+    username
+    platform
+    ms_played
+    conn_country
+    ip_addr (ip_addr_decrypted)
+    master_metadata_track_name
+    master_metadata_album_artist_name
+    master_metadta_album_album_name
+    spotify_track_uri
+    episode_name
+    episode_show_name
+    spotify_episode_uri
+    audiobook_title
+    audiobook_uri
+    audiobook_chapter_uri
+    audiobook_chapter_title
+    reason_start
+    reason_end
+    shuffle
+    skipped
+    offline
+    offline_timestamp
+    incognito_mode
+"""
