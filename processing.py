@@ -71,12 +71,8 @@ def sortBykey(dataset: list, key, isDescending):
 
 
 # Finds the intended type of a value (i.e. will determine that track names
-# should be strings.) The reasoning used here is that some keys will
-# occasionally hold None/null values. So, we cannot always immediately identify
-# the type of values associated with a particular key. Instead, we must keep
-# checking values until we run into one that is NOT a None, and that one is very
-# likely to be the correct type. If I ever run into any other exceptions they
-# will be added here.
+# should be strings.) This ignores None values to find the true value. Other
+# exceptions will be added if found.
 def findValueType(dataset: list, key):
     for song in dataset:
         t = type(song[key])
