@@ -56,13 +56,14 @@ if __name__ == "__main__":
     # exist in a separate file.
 
     # Testing below.
-    listA = processing.filterByKey(
-        data, "master_metadata_album_artist_name", "Palaye Royale", False, False
-    )
-    listB = processing.sortBykey(listA, "master_metadata_track_name", False)
+    listA = processing.filterOutByKey(data, "skipped", None, False, False)
 
-    for song in listB:
+    listA = processing.filterOutByKey(data, "skipped", False, False, False)
+
+    for song in listA:
         print(song["master_metadata_track_name"])
+        print(song["skipped"])
+
 """
 For reference, the different options for keys (in songs) are:
     ts
@@ -73,7 +74,7 @@ For reference, the different options for keys (in songs) are:
     ip_addr (ip_addr_decrypted)
     master_metadata_track_name
     master_metadata_album_artist_name
-    master_metadta_album_album_name
+    master_metadata_album_album_name
     spotify_track_uri
     episode_name
     episode_show_name

@@ -35,6 +35,36 @@ def filterByKey(dataset: list, key, value, isExact, isCaseSensitive):
     return filteredSet
 
 
+# ... not matching key-value pair. (Inversion of the above)
+def filterOutByKey(dataset: list, key, value, isExact, isCaseSensitive):
+    filteredSet = []
+
+    for s in dataset:
+        if s[key] == None:
+            filteredSet.append(s)
+            continue
+
+        if type(s[key]) != str:
+            if s[key] != value:
+                filteredSet.append(s)
+            continue
+
+        if isCaseSensitive and isExact:
+            if s[key] != value:
+                filteredSet.append(s)
+        elif isCaseSensitive:
+            if s[key].find(value) < 0:
+                filteredSet.append(s)
+        elif isExact:
+            if s[key].lower() != value.lower():
+                filteredSet.append(s)
+        else:
+            if s[key].lower().find(value.lower()) < 0:
+                filteredSet.append(s)
+
+    return filteredSet
+
+
 # ... matching provided key-regex pair.
 def filterByRegex(dataset: list, key, regex):
     pattern = re.compile(regex)
