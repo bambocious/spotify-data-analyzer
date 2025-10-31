@@ -18,6 +18,7 @@ def filterByKey(dataset: list, key, value, isExact, isCaseSensitive):
         if type(s[key]) != str:
             if s[key] == value:
                 filteredSet.append(s)
+            continue
 
         if isCaseSensitive and isExact:
             if s[key] == value:
