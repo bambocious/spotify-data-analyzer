@@ -101,6 +101,57 @@ def sortBykey(dataset: list, key, isDescending):
     return sortedSet
 
 
+# Finds all unique entries and counts how often they occur. Returns a list of
+# lists where the first value is the name and the second is the number of
+# occurences. This is best for artists and albums. for songs, use countSongs.
+def countUniqueValues(dataset: list, key, sort: bool):
+    counts = []
+    for song in dataset:
+        name = song[key]
+        for pair in counts:
+            if pair[0] == name:
+                pair[1] += 1
+                break
+        else:
+            counts.append([name, 1])
+
+    if sort:
+        counts = sorted(counts, key=lambda entry: entry[1], reverse=True)
+
+    return counts
+
+
+# Same as above, but finds unique songs and also stores artist and album data
+# for reference.
+def countUniqueSongs(dataset: list, sort: bool):
+    counts = []
+    for song in dataset:
+        for enteredSong in counts:
+            if (
+                song["master_metadata_track_name"] == enteredSong[0]["track_name"]
+                and song["master_metadata_album_artist_name"]
+                == enteredSong[0]["artist_name"]
+                and song["master_metadata_album_album_name"]
+                == enteredSong[0]["album_name"]
+            ):
+                enteredSong[1] += 1
+                break
+        else:
+            counts.append(
+                [
+                    {
+                        "track_name": song["master_metadata_track_name"],
+                        "artist_name": song["master_metadata_album_artist_name"],
+                        "album_name": song["master_metadata_album_album_name"],
+                    },
+                    1,
+                ]
+            )
+    if sort:
+        counts = sorted(counts, key=lambda entry: entry[1], reverse=True)
+    return counts
+
+
 # Finds the intended type of a value (i.e. will determine that track names
 # should be strings.) This ignores None values to find the true value. Other
 # exceptions will be added if found.

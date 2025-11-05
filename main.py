@@ -56,13 +56,8 @@ if __name__ == "__main__":
     # exist in a separate file.
 
     # Testing below.
-    listA = processing.filterOutByKey(data, "skipped", None, False, False)
-
-    listA = processing.filterOutByKey(data, "skipped", False, False, False)
-
-    for song in listA:
-        print(song["master_metadata_track_name"])
-        print(song["skipped"])
+    listA = processing.countSongs(data, True)
+    print(listA)
 
 """
 For reference, the different options for keys (in songs) are:
