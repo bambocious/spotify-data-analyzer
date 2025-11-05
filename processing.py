@@ -124,31 +124,39 @@ def countUniqueValues(dataset: list, key, sort: bool):
 # Same as above, but finds unique songs and also stores artist and album data
 # for reference.
 def countUniqueSongs(dataset: list, sort: bool):
-    counts = []
+    # We use a dict first as it is faster to work with. Convert to list later.
+    # I have to thank generative AI for this idea.
+    countsDict = {}
     for song in dataset:
-        for enteredSong in counts:
-            if (
-                song["master_metadata_track_name"] == enteredSong[0]["track_name"]
-                and song["master_metadata_album_artist_name"]
-                == enteredSong[0]["artist_name"]
-                and song["master_metadata_album_album_name"]
-                == enteredSong[0]["album_name"]
-            ):
-                enteredSong[1] += 1
-                break
+        # Use a tuple as the dict key, and the value will be the count.
+        key = (
+            song["master_metadata_track_name"],
+            song["master_metadata_album_artist_name"],
+            song["master_metadata_album_album_name"],
+        )
+
+        if key in countsDict:
+            countsDict[key] += 1
         else:
-            counts.append(
-                [
-                    {
-                        "track_name": song["master_metadata_track_name"],
-                        "artist_name": song["master_metadata_album_artist_name"],
-                        "album_name": song["master_metadata_album_album_name"],
-                    },
-                    1,
-                ]
-            )
+            countsDict[key] = 1
+
+    # Now we can convert back to a list. Much faster than working wiht a list
+    # directly.
+    counts = [
+        [
+            {
+                "track_name": key[0],
+                "artist_name": key[1],
+                "album_name": key[2],
+            },
+            value,
+        ]
+        for key, value in countsDict.items()  # List comprehension.
+    ]
+
     if sort:
         counts = sorted(counts, key=lambda entry: entry[1], reverse=True)
+
     return counts
 
 

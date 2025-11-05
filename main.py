@@ -56,8 +56,9 @@ if __name__ == "__main__":
     # exist in a separate file.
 
     # Testing below.
-    listA = processing.countSongs(data, True)
-    print(listA)
+    listA = processing.countUniqueSongs(data, True)
+    for a in range(0, 10):
+        print(listA[a])
 
 """
 For reference, the different options for keys (in songs) are:
