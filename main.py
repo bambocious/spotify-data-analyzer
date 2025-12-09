@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # Currently the debug toggle is hardcoded. I will likely keep it that way,
     # or make it a flag that can be set when executing this application through
     # a terminal.
-    debug = True
+    debug = False
 
     dataDir = input(
         'Please enter the absolute location of Spotify history files ("." is also accepted): '
@@ -56,9 +56,16 @@ if __name__ == "__main__":
     # exist in a separate file.
 
     # Testing below.
-    listA = processing.countUniqueSongs(data, True)
-    for a in range(0, 10):
-        print(listA[a])
+    testKey = "Xanthochroid"
+
+    listA = processing.filterByKey(
+        data, "master_metadata_album_artist_name", testKey, False, False
+    )
+    ms1 = processing.totalDuration(listA)
+    ms2 = processing.totalDuration(data)
+    print(
+        f"Portion of total listening time spent listening to {testKey}: {ms1 / ms2 * 100}%."
+    )
 
 """
 For reference, the different options for keys (in songs) are:

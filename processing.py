@@ -3,6 +3,8 @@ All functions used to process data in some way.
 """
 
 import re  # To filter against regex
+import time  # For total listening times
+import math
 
 
 # Return a list only containing dictionaries that match the key-value pair (case
@@ -85,7 +87,7 @@ def filterByYear(dataset: list, year):
 
 # ... sorted by value of a key. Numerically or alphabetically is automatically
 # handled, direction is provided or default to ascending.
-def sortBykey(dataset: list, key, isDescending):
+def sortByKey(dataset: list, key, isDescending):
     # Check type of values for a key.
     valueType = findValueType(dataset, key)
 
@@ -158,6 +160,27 @@ def countUniqueSongs(dataset: list, sort: bool):
         counts = sorted(counts, key=lambda entry: entry[1], reverse=True)
 
     return counts
+
+
+# Return duration in milliseconds.
+def totalDuration(dataset: list):
+    totalMs = 0
+    for song in dataset:
+        totalMs += song["ms_played"]
+
+    return totalMs
+
+
+# Turn time in milliseconds into days, hours, minutes, and seconds, returned as a dictionary.
+def splitMSintoDHMS(ms: int):
+    seconds = math.floor(ms / 1000)
+
+    d = math.floor(seconds / (3600 * 24))
+    h = math.floor(seconds / 3600) % 24
+    m = math.floor(seconds / 60) % 60
+    s = seconds % 60
+
+    return {"days": d, "hours": h, "minutes": m, "seconds": s}
 
 
 # Finds the intended type of a value (i.e. will determine that track names
